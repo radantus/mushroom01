@@ -93,7 +93,7 @@ const LocationLogger: React.FC = () => {
 	id="03"
             >
               <Trash2 className="h-5 w-5" />
-              Kasuj dane
+              Kasuj wszystko
             </button>
           )}
         </div>
