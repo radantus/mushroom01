@@ -24,8 +24,8 @@ const LogEntryList: React.FC<LogEntryListProps> = ({
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       <div className="border-b border-gray-200 bg-gray-50 p-4">
-        <h2 className="text-xl font-semibold text-gray-800">Your Location Logs</h2>
-        <p className="text-gray-600 text-sm">Total entries: {logs.length}</p>
+        <h2 className="text-xl font-semibold text-gray-800">Twoje Pinezki</h2>
+        <p className="text-gray-600 text-sm">Suma: {logs.length}</p>
       </div>
       <div className="divide-y divide-gray-200">
         {logs.map(log => (
