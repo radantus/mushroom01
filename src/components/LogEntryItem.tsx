@@ -68,7 +68,7 @@ const LogEntryItem: React.FC<LogEntryItemProps> = ({
             rel="noopener noreferrer"
             className="text-blue-600 hover:text-blue-800 text-sm transition-colors"
           >
-            View on map
+            Zobacz w Mapach Google
           </a>
         </div>
       </div>
@@ -78,10 +78,10 @@ const LogEntryItem: React.FC<LogEntryItemProps> = ({
           <div className="flex gap-2">
             <input
               type="text"
-              value={}
-              onChange={handleChange}
+              value={comment}
+              onChange={handleCommentChange}
               onKeyDown={handleKeyDown}
-              placeholder="Dodaj opis..."
+              placeholder="Add a comment..."
               className="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               autoFocus
             />
