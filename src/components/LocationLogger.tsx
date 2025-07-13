@@ -63,7 +63,7 @@ const LocationLogger: React.FC = () => {
   return (
     <div className="space-y-8">
       <div className="bg-white rounded-lg shadow-md p-6 transition-all hover:shadow-lg">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Record Your Location</h2>
+        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Zapisz Swoje Położenie</h2>
         <p className="text-gray-600 mb-6">
           Kliknij poniższy przycisk, aby zapisać swoją aktualną lokalizację. Do każdego wpisu możesz dodać komentarz.
         </p>
