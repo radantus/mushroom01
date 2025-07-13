@@ -34,7 +34,7 @@ const LocationLogger: React.FC = () => {
       };
       setLogs(prevLogs => [newLog, ...prevLogs]);
     } catch (error) {
-      console.error('Error getting location:', error);
+      console.error('Błąd zapisu:', error);
     }
   };
 
@@ -51,7 +51,7 @@ const LocationLogger: React.FC = () => {
   };
 
   const handleClearLogs = () => {
-    if (window.confirm('Are you sure you want to delete all logs?')) {
+    if (window.confirm('Czy na pewno chcesz usunąć wszystkie pinezki?')) {
       setLogs([]);
     }
   };
