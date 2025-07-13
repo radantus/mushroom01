@@ -81,7 +81,7 @@ const LogEntryItem: React.FC<LogEntryItemProps> = ({
               value={comment}
               onChange={handleCommentChange}
               onKeyDown={handleKeyDown}
-              placeholder="Add a comment..."
+              placeholder="Dodaj komentarz..."
               className="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               autoFocus
             />
@@ -100,7 +100,7 @@ const LogEntryItem: React.FC<LogEntryItemProps> = ({
             {log.comment ? (
               <p className="text-gray-800">{log.comment}</p>
             ) : (
-              <p className="text-gray-400 italic">Dodaj komentarz</p>
+              <p className="text-gray-400 italic">Dodaj komentarz...</p>
             )}
           </div>
         )}
