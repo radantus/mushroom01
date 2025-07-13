@@ -19,7 +19,7 @@ export const useGeoLocation = () => {
       setError(null);
 
       if (!navigator.geolocation) {
-        const error = new Error('Geolocation is not supported by your browser');
+        const error = new Error('Twoja przeglądarka nie obsługuje geolokalizacji');
         setError(error as unknown as GeolocationPositionError);
         setIsLoading(false);
         reject(error);
