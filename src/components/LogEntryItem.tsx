@@ -50,7 +50,7 @@ const LogEntryItem: React.FC<LogEntryItemProps> = ({
         <button 
           onClick={() => onDeleteLog(log.id)}
           className="text-red-600 hover:text-red-800 p-1 transition-colors self-end sm:self-auto"
-          title="Delete log"
+          title="Kasuj wpis"
         >
           <Trash className="h-4 w-4" />
         </button>
