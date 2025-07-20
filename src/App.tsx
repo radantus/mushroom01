@@ -40,7 +40,6 @@ function App() {
           isOpen={isFeedbackOpen} 
           onClose={() => setIsFeedbackOpen(false)} 
         />
-      <p>Start prompting (or editing) to see magic happen :)</p>
     </div>
       </footer>
     </div>
