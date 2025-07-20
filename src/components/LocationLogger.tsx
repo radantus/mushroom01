@@ -33,45 +33,30 @@ const LocationLogger: React.FC = () => {
         comment: ''
       };
       setLogs(prevLogs => [newLog, ...prevLogs]);
-pushToDataLayer('clk_btn', { event: 'click', button: 'log' });
     } catch (error) {
       console.error('Błąd zapisu:', error);
     }
-  };
-
-	function pushToDataLayer(eventName: string, eventData: Record<string, any> = {}): void {
-  // Ensure dataLayer exists
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: eventName,
-    ...eventData
-  });
-}
-	
+  };	
   const handleUpdateComment = (id: string, comment: string) => {
     setLogs(prevLogs => 
       prevLogs.map(log => 
         log.id === id ? { ...log, comment } : log
       )
     );
-	  pushToDataLayer('clk_btn', { event: 'click', button: 'comment' });
   };
 
   const handleDeleteLog = (id: string) => {
     setLogs(prevLogs => prevLogs.filter(log => log.id !== id));
-pushToDataLayer('clk_btn', { event: 'click', button: 'delete' });
   };
 
   const handleClearLogs = () => {
     if (window.confirm('Czy na pewno chcesz usunąć wszystkie pinezki?')) {
       setLogs([]);
-pushToDataLayer('clk_btn', { event: 'click', button: 'clear' });
     }
   };
 
   const handleDownloadLogs = () => {
     downloadLogs(logs);
-pushToDataLayer('clk_btn', { event: 'click', button: 'download' });
   };
 
   return (
