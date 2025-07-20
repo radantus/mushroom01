@@ -22,15 +22,15 @@ function App() {
         <div className="container mx-auto px-4 text-center text-gray-600 text-sm">
           <p>© {new Date().getFullYear()} GeoTracker – Twoje dane o lokalizacji pozostają na Twoim urządzeniu</p>
         </div>
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         
         {/* Feedback Button */}
-        <div className="fixed bottom-6 right-6">
+        <div className="fixed bottom-2 right-2">
           <button
             onClick={() => setIsFeedbackOpen(true)}
             className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-2 font-medium"
           >
-            <MessageSquare className="w-5 h-5" />
+            <MessageSquare className="w-6 h-6" />
             Wyślij opinię
           </button>
         </div>
