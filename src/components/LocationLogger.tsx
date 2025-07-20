@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
+
 import { MapPin, Download, Trash2 } from 'lucide-react';
+
 import LogEntryList from './LogEntryList';
+
 import { LogEntry } from '../types/types';
+
 import { useGeoLocation } from '../hooks/useGeoLocation';
+
 import { downloadLogs } from '../utils/downloadUtils';
 
 const LocationLogger: React.FC = () => {
+
   const [logs, setLogs] = useState<LogEntry[]>([]);
+
   const { getCurrentPosition, isLoading, error } = useGeoLocation();
 
   // Load logs from localStorage on component mount
@@ -22,7 +29,18 @@ const LocationLogger: React.FC = () => {
     localStorage.setItem('geoLogs', JSON.stringify(logs));
   }, [logs]);
 
+  // Helper to push button clicks to dataLayer
+  const handleButtonClick = (buttonText: string) => {
+    if (window && (window as any).dataLayer) {
+      (window as any).dataLayer.push({
+        event: 'click',
+        buttonText,
+      });
+    }
+  };
+
   const handleLogLocation = async () => {
+    handleButtonClick('Zapisz');
     try {
       const position = await getCurrentPosition();
       const newLog: LogEntry = {
@@ -36,77 +54,72 @@ const LocationLogger: React.FC = () => {
     } catch (error) {
       console.error('Błąd zapisu:', error);
     }
-  };	
+  };
+
   const handleUpdateComment = (id: string, comment: string) => {
-    setLogs(prevLogs => 
-      prevLogs.map(log => 
+    setLogs(prevLogs =>
+      prevLogs.map(log =>
         log.id === id ? { ...log, comment } : log
       )
     );
   };
 
   const handleDeleteLog = (id: string) => {
+    handleButtonClick('Usuń');
     setLogs(prevLogs => prevLogs.filter(log => log.id !== id));
   };
 
   const handleClearLogs = () => {
+    handleButtonClick('Kasuj wszystko');
     if (window.confirm('Czy na pewno chcesz usunąć wszystkie pinezki?')) {
       setLogs([]);
     }
   };
 
   const handleDownloadLogs = () => {
+    handleButtonClick('Pobierz');
     downloadLogs(logs);
   };
 
   return (
-    <div className="space-y-8">
-      <div className="bg-white rounded-lg shadow-md p-6 transition-all hover:shadow-lg">
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Zapisz Swoje Położenie</h2>
-        <p className="text-gray-600 mb-6">
-          Kliknij poniższy przycisk, aby zapisać swoją aktualną lokalizację. Do każdego wpisu możesz dodać komentarz.
-        </p>
-        <div className="flex flex-wrap gap-4">
-          <button
-            onClick={handleLogLocation}
-            disabled={isLoading}
-            id="01"
-className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 disabled:bg-blue-400 disabled:cursor-not-allowed"
-	>
-            <MapPin className="h-5 w-5" />
-            {isLoading ? 'Getting Location...' : 'Zapisz pinezkę'}
-          </button>
-          <button
-            onClick={handleDownloadLogs}
-            disabled={logs.length === 0}
-            className="flex items-center justify-center gap-2 bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 disabled:bg-teal-400 disabled:cursor-not-allowed"
-	id="02"
-          >
-            <Download className="h-5 w-5" />
-            Zapisz
-          </button>
-          {logs.length > 0 && (
-            <button
-              onClick={handleClearLogs}
-              className="flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200"
-	id="03"
-            >
-              <Trash2 className="h-5 w-5" />
-              Kasuj wszystko
-            </button>
-          )}
-        </div>
-        {error && (
-          <div className="mt-4 p-3 bg-red-100 border border-red-200 text-red-700 rounded-md">
-            Error: {error.message || 'Nie udało się pobrać lokalizacji. Sprawdź uprawnienia aplikacji.'}
-          </div>
-        )}
-      </div>
+    <div>
+      <h2>Zapisz Swoje Położenie</h2>
+      <p>
+        Kliknij poniższy przycisk, aby zapisać swoją aktualną lokalizację. Do każdego wpisu możesz dodać komentarz.
+      </p>
 
-      <LogEntryList 
-        logs={logs} 
-        onUpdateComment={handleUpdateComment} 
-        onDeleteLog={handleDeleteLog} 
+      <button
+        onClick={handleLogLocation}
+        disabled={isLoading}
+      >
+        {isLoading ? 'Getting Location...' : 'Zapisz'}
+      </button>
+
+      {logs.length > 0 && (
+        <button
+          onClick={handleClearLogs}
+        >
+          Kasuj wszystko
+        </button>
+      )}
+
+      <button
+        onClick={handleDownloadLogs}
+        disabled={logs.length === 0}
+      >
+        Pobierz
+      </button>
+
+      {error && (
+        <div>
+          Error: {error.message || 'Nie udało się pobrać lokalizacji. Sprawdź uprawnienia aplikacji.'}
+        </div>
+      )}
+
+      <LogEntryList
+        logs={logs}
+        onUpdateComment={handleUpdateComment}
+        onDeleteLog={handleDeleteLog}
       />
     </div>
   );
