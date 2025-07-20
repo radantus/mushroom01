@@ -20,12 +20,12 @@ function App() {
       </main>
       <footer className="bg-gray-100 border-t border-gray-200 py-4 mt-auto">
         <div className="container mx-auto px-4 text-center text-gray-600 text-sm">
-          <p>© {new Date().getFullYear()} GeoTracker – Twoje dane o lokalizacji pozostają na Twoim urządzeniu</p>
+          <p>© {new Date().getFullYear()} GeoTracker – Twoje dane o lokalizacji pozostają na Twoim urządzeniu</p></br><</br></br>
         </div>
-        <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="bg-gray-100 flex items-center justify-center">
         
         {/* Feedback Button */}
-        <div className="fixed bottom-6 right-6">
+        <div className="fixed right-6">
           <button
             onClick={() => setIsFeedbackOpen(true)}
             className="bg-blue-600 hover:bg-blue-900 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 flex items-center gap-2 font-medium"
