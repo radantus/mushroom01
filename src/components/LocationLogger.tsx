@@ -33,11 +33,21 @@ const LocationLogger: React.FC = () => {
         comment: ''
       };
       setLogs(prevLogs => [newLog, ...prevLogs]);
+pushToDataLayer('clk_btn', { event: 'click', button: 'log' });
     } catch (error) {
       console.error('Błąd zapisu:', error);
     }
   };
 
+	function pushToDataLayer(eventName: string, eventData: Record<string, any> = {}): void {
+  // Ensure dataLayer exists
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: eventName,
+    ...eventData
+  });
+}
+	
   const handleUpdateComment = (id: string, comment: string) => {
     setLogs(prevLogs => 
       prevLogs.map(log => 
@@ -71,8 +81,9 @@ const LocationLogger: React.FC = () => {
           <button
             onClick={handleLogLocation}
             disabled={isLoading}
-            className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 disabled:bg-blue-400 disabled:cursor-not-allowed"
-	id="01"
+            id="01
+className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors duration-200 disabled:bg-blue-400 disabled:cursor-not-allowed"
+	
           >
             <MapPin className="h-5 w-5" />
             {isLoading ? 'Getting Location...' : 'Zapisz pinezkę'}
