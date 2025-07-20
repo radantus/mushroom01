@@ -21,7 +21,10 @@ function App() {
       <footer className="bg-gray-100 border-t border-gray-200 py-4 mt-auto">
         <div className="container mx-auto px-4 text-center text-gray-600 text-sm">
           <p>© {new Date().getFullYear()} GeoTracker – Twoje dane o lokalizacji pozostają na Twoim urządzeniu</p>
-        </div><div></br></br></br></div>
+          </br>
+          </br>
+          </br>
+        </div>
         <div className="bg-gray-100 flex items-center justify-center">
         
         {/* Feedback Button */}
