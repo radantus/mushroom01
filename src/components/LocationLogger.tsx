@@ -54,20 +54,24 @@ pushToDataLayer('clk_btn', { event: 'click', button: 'log' });
         log.id === id ? { ...log, comment } : log
       )
     );
+	  pushToDataLayer('clk_btn', { event: 'click', button: 'comment' });
   };
 
   const handleDeleteLog = (id: string) => {
     setLogs(prevLogs => prevLogs.filter(log => log.id !== id));
+pushToDataLayer('clk_btn', { event: 'click', button: 'delete' });
   };
 
   const handleClearLogs = () => {
     if (window.confirm('Czy na pewno chcesz usunąć wszystkie pinezki?')) {
       setLogs([]);
+pushToDataLayer('clk_btn', { event: 'click', button: 'clear' });
     }
   };
 
   const handleDownloadLogs = () => {
     downloadLogs(logs);
+pushToDataLayer('clk_btn', { event: 'click', button: 'download' });
   };
 
   return (
